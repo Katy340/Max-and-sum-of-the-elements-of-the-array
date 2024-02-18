@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include <iostream>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+    const int MAX_ELEMENT=7;
+    double m[MAX_ELEMENT]={4.4,5.67,0,9.5,-6.9,2.12,7.8};
+    int a=1; int b=5; int i,j,k=0,iMax=0,result;
+    double sum=0;
+
+    printf("Исходный массив:\n");
+    for(i=0;i<MAX_ELEMENT;i++)
+        printf("%.2f\t",m[i]);
+
+    for(i=0;i<MAX_ELEMENT;i++)
+    {
+        if(m[i]>a && m[i]<b)
+        k++;
+    }
+
+    printf("\nКоличество элементов массива, лежащих в диапозоне от 1 до 5: %d", k);
+
+    for(i=0;i<MAX_ELEMENT;i++)
+    {
+        if(m[i]>m[iMax])
+            iMax=i;
+    }
+    printf("\nНаибольший элемент расположен на позици %.d" ,iMax);
+
+
+    for(i=iMax+1;i<7;)
+        sum+=m[i++];
+    printf("\nCумма элементов массива, расположенных после максимального элемента равна %.2f",sum);
+
+    for (i = 0; i < MAX_ELEMENT; i++)
+    {
+        for (int j = i + 1; j < MAX_ELEMENT; j++)
+        {
+            if ((fabs(m[i])) < (fabs(m[j])))
+            {
+                result = m[i];
+                m[i] = m[j];
+                m[j] = result;
+            }
+        }
+    }
+
+     printf("\nУпорядоченные элементы массива по убыванию модулей элементов\n ");
+     for(i=0;i<MAX_ELEMENT;i++)
+       printf("%.2f\t",fabs(m[i]));
+}
